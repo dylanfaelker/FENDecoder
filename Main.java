@@ -2,6 +2,8 @@ import java.util.*;
 
 class Main
 {
+
+  private static String fen = new String();
   //Game information
   private static char[][] board = new char[8][8];
   private static String turn = new String();
@@ -19,13 +21,13 @@ class Main
 
     //Gets the FEN number from the user
     System.out.print("FEN number: ");
-    String fen = keyboard.nextLine();
+    fen = keyboard.nextLine();
 
-    decode(fen);
+    decode();
     printBoard();
   }
 
-  private static void decode(String fen)
+  private static void decode()
   {
     int row = 0;
     int col = 0;
@@ -99,9 +101,10 @@ class Main
       //Determines where enpassent is possible
       if(numSpaces == 3)
       {
-        if(ch != '-')
+        if(ch != '-' && ch != ' ')
         {
-          enpassentOn = ch + "";
+          enpassentOn = fen.substring(i, i+2);
+          i++;
         }
       }
 
