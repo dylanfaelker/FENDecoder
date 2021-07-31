@@ -114,7 +114,15 @@ class Main
       {
         if(ch != ' ')
         {
-          halfMoves = Character.getNumericValue(ch);
+          if(fen.charAt(i+1) == ' ')
+          {
+            halfMoves = Character.getNumericValue(ch);
+          }
+          else
+          {
+            halfMoves = Character.getNumericValue(ch)*10 + Character.getNumericValue(fen.charAt(i+1));
+            i++;
+          }
         }
       }
 
