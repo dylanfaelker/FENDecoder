@@ -3,8 +3,9 @@ import java.lang.Math;
 
 class Main
 {
-
+  //FEN number
   private static String fen = new String();
+  
   //Game information
   private static char[][] board = new char[8][8];
   private static String turn = new String();
@@ -168,7 +169,7 @@ class Main
     }
   }
 
-  //prints a image of the board to the console with info of whos turn it is and castling rights and enpassent possiblites
+  //prints a image of the board to the console with info of whos turn it is and castling rights and enpassent possiblites and move counts
   private static void printBoard()
   {
     for(int r = 0; r < 8; r++)
@@ -185,7 +186,7 @@ class Main
     System.out.println("Turn: " + turn);
     System.out.println("\nCastling:\nWhite king side: " + CastleWKing + "\nWhite queen side: " + CastleWQueen  + "\nBlack king side: " + CastleBKing + "\nBlack queen side: " + CastleBQueen);
     System.out.println("\nEnpassent: " + enpassentOn);
-    System.out.println("\nHalf moves: " + halfMoves);
+    System.out.println("\nHalf moves since capture or pawn move: " + halfMoves);
     System.out.println("\nMove count: " + moveCount);
   }
 }
