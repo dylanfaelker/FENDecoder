@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Math;
 
 class Main
 {
@@ -122,7 +123,17 @@ class Main
       {
         if(ch != ' ')
         {
-          moveCount = Character.getNumericValue(ch);
+          int chars = 1;
+          for(int j = i+1; j < fen.length(); j++)
+          {
+            chars++;
+          }
+
+          for(int k = 0; k < chars; k++)
+          {
+            moveCount += Character.getNumericValue(fen.charAt(i+k)) * Math.pow(10, chars - k - 1);
+          }
+          i += chars;
         }
       }
 
