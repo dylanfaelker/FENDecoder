@@ -2,8 +2,16 @@ import java.util.*;
 
 class Main
 {
-
+  //Game information
   private static char[][] board = new char[8][8];
+  private static String turn = new String();
+  private static boolean CastleWKing = false;
+  private static boolean CastleWQueen = false;
+  private static boolean CastleBKing = false;
+  private static boolean CastleBQueen = false;
+  private static String enpassentOn = new String();
+  private static int halfMoves = 0;
+  private static int moveCount = 0;
 
   public static void main(String[] args)
   {
@@ -29,7 +37,7 @@ class Main
       char ch = fen.charAt(i);
 
       //for when the FEN number is giving instructions about piece positions
-      if(numSpaces = 0)
+      if(numSpaces == 0)
       {
         //for when the FEN number is indicating a new line
         if(ch == '/')
@@ -54,7 +62,69 @@ class Main
         }
       }
 
-      if(Character.isWhiteSpace(ch))
+      //Determines whos turn is is
+      if(numSpaces == 1)
+      {
+        if(ch == 'w')
+        {
+          turn = "White";
+        }
+        else
+        {
+          turn = "Black";
+        }
+      }
+
+      //Determines castling rights
+      if(numSpaces == 2)
+      {
+        if(ch == 'K')
+        {
+          CastleWKing = true;
+        }
+        if(ch == 'Q')
+        {
+          CastleWQueen = true;
+        }
+        if(ch == 'k')
+        {
+          CastleBKing = true;
+        }
+        if(ch == 'q')
+        {
+          CastleBQueen = true;
+        }
+      }
+
+      //Determines where enpassent is possible
+      if(numSpaces == 3)
+      {
+        if(ch != '-')
+        {
+          enpassentOn = ch + "";
+        }
+      }
+
+      //Determines halfmoves since last capture/pawn move
+      if(numSpaces == 4)
+      {
+        if(ch != ' ')
+        {
+          halfMoves = Character.getNumericValue(ch);
+        }
+      }
+
+      //Determines number of moves played
+      if(numSpaces == 5)
+      {
+        if(ch != ' ')
+        {
+          moveCount = Character.getNumericValue(ch);
+        }
+      }
+
+      //Changes what the decoder is understanding
+      if(ch == ' ')
         {
           numSpaces++;
         }
@@ -88,6 +158,12 @@ class Main
       }
       System.out.print("|");
     }
-    System.out.println("\n_________________________________");
+    System.out.println("\n_________________________________\n");
+
+    System.out.println("Turn: " + turn);
+    System.out.println("\nCastling:\nWhite king side: " + CastleWKing + "\nWhite queen side: " + CastleWQueen  + "\nBlack king side: " + CastleBKing + "\nBlack queen side: " + CastleBQueen);
+    System.out.println("\nEnpassent: " + enpassentOn);
+    System.out.println("\nHalf moves: " + halfMoves);
+    System.out.println("\nMove count: " + moveCount);
   }
 }
