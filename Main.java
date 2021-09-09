@@ -1,6 +1,12 @@
 import java.util.*;
 import java.lang.Math;
 
+/*
+ * Purpose: Makes FEN numbers in chess easy to understand
+ * Created by: Dylan Faelker
+ * Created on: Jul 31 2021
+*/
+
 class Main
 {
   //FEN number
